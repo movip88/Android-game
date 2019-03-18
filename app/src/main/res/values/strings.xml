@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">movip88</string>
+    <string name="btnPlay">jugar</string>
+    <string name="btnRnk">ranquing</string>
+    <string name="btnSet">ajustes</string>
+    <string name="btnInfo">mas sobre nosotros</string>
+    <string name="nivelIT">Nivel</string>
+    <string name="puntuacionIT">Puntuacion</string>
+    <string name="enviarBTN">Enviar</string>
+    <string name="setName">Nombre Usuario</string>
+    <string name="setAvatar" translatable="false">Avatar</string>
+    <string name="eliminarbtn">Eliminar cuenta</string>
+    <string name="deleteData">Eliminar mis datos del servidor</string>
+    <string name="deleteServer">Se eliminara toda la informacion del usuario, esta seguro?</string>
+    <string name="setVerificar">Codigo de Verificación</string>
+    <string name="btnVerificar">Verificar</string>
+    <string name="setRegister">Registrar</string>
+    <string name="btnRegister">Registrarse</string>
+    <string name="setAbout" translatable="false">AirBomber</string>
+    <string name="btnMaps">Localización</string>
+    <string name="setProgressBar">No se ha podido conectar...</string>
+    <string name="setReintentar">Reintentar</string>
+    <string name="cuentaEliminada">cuenta eliminada</string>
+    <string name="setDatosCorrectamente">Datos subidos correctamente</string>
+    <string name="level">Nivel</string>
+    <string name="score">puntuación</string>
+    <string name="playedAt">Ultima partida</string>
+    <string name="formatEmail">Tiene que ser un formato de email</string>
+</resources>

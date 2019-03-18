@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/prueva_cielo"
+    tools:context=".activity.HomeActivity">
+
+    <LinearLayout
+        android:layout_width="254dp"
+        android:layout_height="347dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/btnPlay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/boton_redondo"
+            android:editable="false"
+
+            android:fontFamily="@font/alfa_slab_one"
+            android:text="@string/btnPlay"
+
+            />
+
+
+        <Button
+            android:id="@+id/btnRnk"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/boton_redondo"
+            android:fontFamily="@font/alfa_slab_one"
+            android:text="@string/btnRnk" />
+
+        <Button
+            android:id="@+id/btnSet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/boton_redondo"
+            android:fontFamily="@font/alfa_slab_one"
+            android:text="@string/btnSet" />
+
+        <Button
+            android:id="@+id/btnInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/boton_redondo"
+            android:fontFamily="@font/alfa_slab_one"
+            android:text="@string/btnInfo" />
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

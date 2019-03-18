@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303f9f</color>
+    <color name="colorAccent">#66ccf7</color>
+    <color name="colorFondoBoton">@android:color/holo_orange_dark</color>
+    <color name="colorFondoBotonEliminar">#999999</color>
+    <color name="colorFondoHome">#65CCF7</color>
+    <color name="message_in">#A5FA39</color>
+    <color name="messageIn">#A5FA39</color>
+    <color name="message_out">#d2d2d2</color>
+    <color name="colorVerify">#63c2da</color>
+    <color name="colorBlack">#000000</color>
+</resources>

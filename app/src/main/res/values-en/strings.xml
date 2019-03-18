@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">movip88</string>
+    <string name="btnPlay">play</string>
+    <string name="btnRnk">ranking</string>
+    <string name="btnSet">settings</string>
+    <string name="btnInfo">more about us</string>
+    <string name="nivelIT">Level</string>
+    <string name="puntuacionIT">Score</string>
+    <string name="enviarBTN">Send</string>
+    <string name="setName">User Name</string>
+    <string name="eliminarbtn">Delete account</string>
+    <string name="deleteData">Delete my data from the server</string>
+    <string name="deleteServer">All user information will be deleted, are you sure?</string>
+    <string name="setVerificar">Verification code</string>
+    <string name="btnVerificar">Verify</string>
+    <string name="setRegister">Register</string>
+    <string name="btnRegister">Sign in</string>
+    <string name="btnMaps">Localication</string>
+    <string name="setProgressBar">Unable to connect ...</string>
+    <string name="setReintentar">Retry</string>
+    <string name="cuentaEliminada">Account deleted successfully</string>
+    <string name="setDatosCorrectamente">Data uploaded correctly</string>
+    <string name="level">Level</string>
+    <string name="score">score</string>
+    <string name="playedAt">Played at</string>
+    <string name="formatEmail">It has to be an email format</string>
+</resources>
