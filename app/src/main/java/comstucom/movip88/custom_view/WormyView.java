@@ -16,7 +16,7 @@ public class WormyView extends View {
     public static int TILE_SIZE = 48;
     private int nCols, nRows, top, left, bottom, right;
     private int wormX, wormY, score = 0, numCoins = 0, slowdown, lives;
-    private boolean playing = false;
+    private boolean playing = false, pause = false;
     private char map[];
     private Paint paint, paintText;
     private Bitmap tiles, wormLeft, wormRight, worm, heard, deadWorm;
@@ -34,6 +34,7 @@ public class WormyView extends View {
         wormRight = BitmapFactory.decodeResource(getResources(), R.drawable.worm_right);
         heard = BitmapFactory.decodeResource(getResources(), R.drawable.heard);
         deadWorm = BitmapFactory.decodeResource(getResources(), R.drawable.worm_dead);
+        worm = wormLeft;
         paintText = new Paint();
         paintText.setColor(Color.GREEN);
         paintText.setStyle(Paint.Style.FILL_AND_STROKE);
@@ -200,6 +201,7 @@ public class WormyView extends View {
     private int counter = 0;
     public void update(float accelerationX, float accelerationY) {
         if (!playing) return;
+        if (pause) return;
         if (++counter == slowdown) {
             counter = 0;
             int newX = wormX, newY = wormY;
@@ -230,7 +232,6 @@ public class WormyView extends View {
                         worm = deadWorm;
                         playing = false;
                         if (listener != null) listener.gameLost(this, this.score);
-                        //TODO poner progunta reiniciar juego
                     }else{
                         lives --;
                         map[idx] = ' ';
@@ -240,6 +241,18 @@ public class WormyView extends View {
             }
         }
         this.invalidate();
+    }
+
+    public void pauseGame() {
+        this.pause = true;
+    }
+
+    public void reanudeGame() {
+        this.pause = false;
+    }
+
+    public boolean isPlaying() {
+        return playing;
     }
 
     public interface WormyListener {

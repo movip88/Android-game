@@ -1,5 +1,6 @@
 package comstucom.movip88.activity;
 
+import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -9,6 +10,7 @@ import android.media.SoundPool;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -33,6 +35,7 @@ import comstucom.movip88.HelperUser;
 import comstucom.movip88.MyVolley;
 import comstucom.movip88.R;
 import comstucom.movip88.custom_view.CountDownButton;
+import comstucom.movip88.custom_view.CustomCuestion;
 import comstucom.movip88.custom_view.WormyView;
 import comstucom.movip88.exception.ExceptionTokenNull;
 
@@ -48,6 +51,7 @@ public class PlayActivity extends AppCompatActivity implements WormyView.WormyLi
     private SoundPool soundPool;
     private boolean loaded;
     private CountDownButton customPlaybtn;
+    private CustomCuestion customCuestion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +62,7 @@ public class PlayActivity extends AppCompatActivity implements WormyView.WormyLi
         progressBar.setIndeterminate(true);
         customPlaybtn = findViewById(R.id.enviarBTN);
         customPlaybtn.setCountDownListener(this);
+        customCuestion = findViewById(R.id.customCuestion);
         customPlaybtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -94,6 +99,28 @@ public class PlayActivity extends AppCompatActivity implements WormyView.WormyLi
         if (sensor != null) {
             sensorManager.registerListener(this, sensor, SensorManager.SENSOR_DELAY_UI);
         }
+        Log.d("pmv", wormyView.isPlaying() + "");
+        if(wormyView.isPlaying()){
+            customCuestion.setPregunta("Quieres continuar la partida?");
+            customCuestion.setAceptar("Si");
+            customCuestion.setRechazar("No");
+            customCuestion.setVisibility(View.VISIBLE);
+            customCuestion.setPreguntaLisener(new CustomCuestion.PreguntaLisener() {
+                @Override
+                public void aceptar() {
+                    customCuestion.setVisibility(View.INVISIBLE);
+                    wormyView.reanudeGame();
+                }
+
+                @Override
+                public void rechazar() {
+                    customCuestion.setVisibility(View.INVISIBLE);
+                    customPlaybtn.setVisibility(View.VISIBLE);
+                }
+            });
+        }else{
+            customPlaybtn.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
@@ -101,6 +128,7 @@ public class PlayActivity extends AppCompatActivity implements WormyView.WormyLi
         // Nicely disconnect the sensor's listener from the view
         sensorManager.unregisterListener(this);
         super.onPause();
+        wormyView.pauseGame();
     }
 
     final static String URL_REGISTER_VER = "https://api.flx.cat/dam2game/user/score";
@@ -180,7 +208,25 @@ public class PlayActivity extends AppCompatActivity implements WormyView.WormyLi
         if (loaded) {
             soundPool.play(this.dead, 1f, 1f, 1, 0, 1f);
         }
-        customPlaybtn.setVisibility(View.VISIBLE);
+        customCuestion.setPregunta("Quieres volver a jugar?");
+        customCuestion.setAceptar("Si!!");
+        customCuestion.setRechazar("No :(");
+        customCuestion.setVisibility(View.VISIBLE);
+        customCuestion.setPreguntaLisener(new CustomCuestion.PreguntaLisener() {
+            @Override
+            public void aceptar() {
+                customCuestion.setVisibility(View.INVISIBLE);
+                wormyView.newGame();
+            }
+
+            @Override
+            public void rechazar() {
+                customCuestion.setVisibility(View.INVISIBLE);
+                Intent intent = new Intent(PlayActivity.this, HomeActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 
     @Override
