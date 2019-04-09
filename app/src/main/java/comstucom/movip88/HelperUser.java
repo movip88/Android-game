@@ -171,8 +171,6 @@ public class HelperUser {
      */
     public void errorToken(Context c){
         deleteAllData();
-        Toast toast = Toast.makeText(c.getApplicationContext(), "Vuelve a iniciar sesion porfavor", Toast.LENGTH_LONG);
-        toast.show();
         Intent intent = new Intent(c, RegisterActivity.class);
         c.startActivity(intent);
     }

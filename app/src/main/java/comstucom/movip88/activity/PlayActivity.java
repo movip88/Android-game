@@ -6,6 +6,7 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.media.SoundPool;
 import android.os.Build;
 import android.os.Bundle;
@@ -52,6 +53,7 @@ public class PlayActivity extends AppCompatActivity implements WormyView.WormyLi
     private boolean loaded;
     private CountDownButton customPlaybtn;
     private CustomCuestion customCuestion;
+    private MediaPlayer musicaFondo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,7 +90,10 @@ public class PlayActivity extends AppCompatActivity implements WormyView.WormyLi
         this.coin = soundPool.load(this, R.raw.dinero, 1);
         this.dead = soundPool.load(this, R.raw.perder, 1);
         this.knock = soundPool.load(this,R.raw.golpe,1);
-        this.intro = soundPool.load(this,R.raw.golpe,1);
+        this.intro = soundPool.load(this,R.raw.intro,1);
+
+        this.musicaFondo = MediaPlayer.create(this, R.raw.cancion_start);
+        this.musicaFondo.setLooping(true);
     }
 
     @Override
@@ -110,6 +115,7 @@ public class PlayActivity extends AppCompatActivity implements WormyView.WormyLi
                 public void aceptar() {
                     customCuestion.setVisibility(View.INVISIBLE);
                     wormyView.reanudeGame();
+                    musicaFondo.start();
                 }
 
                 @Override
@@ -129,6 +135,17 @@ public class PlayActivity extends AppCompatActivity implements WormyView.WormyLi
         sensorManager.unregisterListener(this);
         super.onPause();
         wormyView.pauseGame();
+        if(this.musicaFondo != null){
+            this.musicaFondo.pause();
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if(this.musicaFondo != null){
+            this.musicaFondo.release();
+        }
     }
 
     final static String URL_REGISTER_VER = "https://api.flx.cat/dam2game/user/score";
@@ -204,6 +221,7 @@ public class PlayActivity extends AppCompatActivity implements WormyView.WormyLi
 
     @Override
     public void gameLost(View view, int score) {
+        this.musicaFondo.pause();
         subirScore(String.valueOf(0),String.valueOf(score));
         if (loaded) {
             soundPool.play(this.dead, 1f, 1f, 1, 0, 1f);
@@ -217,6 +235,7 @@ public class PlayActivity extends AppCompatActivity implements WormyView.WormyLi
             public void aceptar() {
                 customCuestion.setVisibility(View.INVISIBLE);
                 wormyView.newGame();
+                musicaFondo.start();
             }
 
             @Override
@@ -244,5 +263,6 @@ public class PlayActivity extends AppCompatActivity implements WormyView.WormyLi
     @Override
     public void finishedAccount() {
         wormyView.newGame();
+        this.musicaFondo.start();
     }
 }
