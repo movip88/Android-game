@@ -17,6 +17,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".activity.PlayActivity" />
         <activity android:name=".SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,6 +25,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".game.GameActivity"
+            android:screenOrientation="landscape"
+            android:configChanges="keyboardHidden|orientation|screenSize">
+        </activity>
+
         <activity android:name=".activity.RegisterActivity" />
         <activity android:name=".activity.VerificarCodigoActivity" />
 
@@ -33,14 +40,12 @@
 
         <activity android:name=".activity.HomeActivity" />
         <activity android:name=".activity.SettingsActivity" />
-        <activity android:name=".activity.PlayActivity" />
+        <activity android:name=".activity.PlayActivityWormy" />
         <activity android:name=".activity.RankingActivity" />
         <activity android:name=".activity.ScoreActivity" />
-
         <activity
             android:name=".activity.ConversationActivity"
             android:screenOrientation="portrait" />
-
         <activity android:name=".activity.Aboutus" />
 
         <meta-data
