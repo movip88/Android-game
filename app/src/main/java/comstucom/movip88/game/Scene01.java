@@ -292,7 +292,7 @@ public class Scene01 extends TiledScene implements OnContactListener {
             int ry = 60;
 
             Point a = new Point(rx, ry);
-            Point b = new Point(rx+0, ry+100);
+            Point b = new Point(rx, ry+100);
             Point c = new Point(rx+87, ry+50);
 
             Path path = new Path();
