@@ -52,8 +52,10 @@ public class Game {
         return level;
     }
 
+    public void setLevel(Integer level) { this.level = level; }
+
     public int currentSceneResource(){
-        return scenesResources[level];
+        return scenesResources[this.level];
     }
 
     // Methods to be called by the game engine on start, stop, resume and pause

@@ -29,9 +29,12 @@ import comstucom.movip88.HelperUser;
 import comstucom.movip88.MyVolley;
 import comstucom.movip88.R;
 import comstucom.movip88.engine.Game;
+import comstucom.movip88.engine.GameEngine;
 import comstucom.movip88.engine.Scene;
 import comstucom.movip88.engine.Touch;
 import comstucom.movip88.exception.ExceptionTokenNull;
+import comstucom.movip88.game.characters.Bonk;
+import comstucom.movip88.model.Partida;
 
 public class ScenePregunta extends Scene {
 
@@ -52,6 +55,9 @@ public class ScenePregunta extends Scene {
         this.aceptar = aceptar;
         this.rechazar = rechazar;
 
+        GameEngine gameEngine = game.getGameEngine();
+        if(gameEngine.getBitmapSet() == null) gameEngine.loadBitmapSet(R.raw.sprites, R.raw.sprites_info, R.raw.sprites_seq);
+
         this.puntuacion = puntuacion;
 
         paintKeyBackground = new Paint();
@@ -70,6 +76,16 @@ public class ScenePregunta extends Scene {
 
         if(puntuacion != null){
             subirScore(String.valueOf(game.getLevel()), String.valueOf(puntuacion));
+            HelperUser.getInstance(((AppCompatActivity)game.getGameEngine().getContext())).eliminarPartidaGuardada();
+            game.resetValues();
+        }else{
+            Partida partida = HelperUser.getInstance(((AppCompatActivity) game.getGameEngine().getContext())).cogerPartida();
+            if(partida != null){
+                game.setLevel(partida.getLevel());
+                Bonk bonk = new Bonk(game, 0, 0, partida.getLives());
+                bonk.setScore(partida.getScore());
+                game.setBonk(bonk);
+            }
         }
     }
 
@@ -138,7 +154,6 @@ public class ScenePregunta extends Scene {
 
             if ((y > 700 && y < 900) && (x < 400 && x > 100)) {
                 if(touch.isDown()){
-                    game.resetValues();
                     Scene01 scene = new Scene01(game);
                     game.loadScene(scene);
                 }

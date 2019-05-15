@@ -46,8 +46,8 @@ public class Scene01 extends TiledScene implements OnContactListener {
     public Scene01(Game game) {
         super(game);
         // Load the bitmap set for this game
+
         GameEngine gameEngine = game.getGameEngine();
-        if(gameEngine.getBitmapSet() == null) gameEngine.loadBitmapSet(R.raw.sprites, R.raw.sprites_info, R.raw.sprites_seq);
 
         heard = BitmapFactory.decodeResource(gameEngine.getResources(), R.drawable.heard);
 
