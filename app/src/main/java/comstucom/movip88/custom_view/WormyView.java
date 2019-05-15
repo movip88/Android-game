@@ -1,6 +1,7 @@
 package comstucom.movip88.custom_view;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -9,6 +10,8 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.view.View;
+
+import comstucom.movip88.App;
 import comstucom.movip88.R;
 
 public class WormyView extends View {
@@ -194,7 +197,7 @@ public class WormyView extends View {
 
         drawLives(canvas , getWidth() , getHeight());
 
-        String text = "Puntuacion -> " + score;
+        String text = App.getContext().getString(R.string.puntuacionIT) +" -> " + score;
         canvas.drawText(text, (getWidth() / 2) - paintText.measureText(text) / 2, 50, paintText);
     }
 

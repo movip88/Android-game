@@ -32,6 +32,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import comstucom.movip88.APIResponse;
+import comstucom.movip88.App;
 import comstucom.movip88.HelperUser;
 import comstucom.movip88.MyVolley;
 import comstucom.movip88.R;
@@ -106,9 +107,9 @@ public class PlayActivityWormy extends AppCompatActivity implements WormyView.Wo
         }
         Log.d("pmv", wormyView.isPlaying() + "");
         if(wormyView.isPlaying()){
-            customCuestion.setPregunta("Quieres continuar la partida?");
-            customCuestion.setAceptar("Si");
-            customCuestion.setRechazar("No");
+            customCuestion.setPregunta(App.getContext().getString(R.string.reanudar));
+            customCuestion.setAceptar(App.getContext().getString(R.string.afirmacion));
+            customCuestion.setRechazar(App.getContext().getString(R.string.negacion));
             customCuestion.setVisibility(View.VISIBLE);
             customCuestion.setPreguntaLisener(new CustomCuestion.PreguntaLisener() {
                 @Override
@@ -226,9 +227,9 @@ public class PlayActivityWormy extends AppCompatActivity implements WormyView.Wo
         if (loaded) {
             soundPool.play(this.dead, 1f, 1f, 1, 0, 1f);
         }
-        customCuestion.setPregunta("Quieres volver a jugar?");
-        customCuestion.setAceptar("Si!!");
-        customCuestion.setRechazar("No :(");
+        customCuestion.setPregunta(App.getContext().getString(R.string.pregunta));
+        customCuestion.setAceptar(App.getContext().getString(R.string.afirmacion)+"!!");
+        customCuestion.setRechazar(App.getContext().getString(R.string.negacion)+" :(");
         customCuestion.setVisibility(View.VISIBLE);
         customCuestion.setPreguntaLisener(new CustomCuestion.PreguntaLisener() {
             @Override

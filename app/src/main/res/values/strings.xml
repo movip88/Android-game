@@ -26,4 +26,13 @@
     <string name="score">puntuación</string>
     <string name="playedAt">Ultima partida</string>
     <string name="formatEmail">Tiene que ser un formato de email</string>
+    <string name="pregunta">Quieres volver a jugar?</string>
+    <string name="afirmacion">Si</string>
+    <string name="negacion" translatable="false">No</string>
+    <string name="reanudar">Quieres continuar la partida?</string>
+    <string name="berserker">*Modo Matanza*</string>
+    <string name="iniciarJuego">Quieres iniciar una partida?</string>
+    <string name="puntuacionPregunta">Tu puntuación es:</string>
+    <string name="escogerJuego">A que juego quieres jugar?</string>
+    <string name="felixitats">¡¡¡Felixitats!!!</string>
 </resources>

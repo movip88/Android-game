@@ -4,6 +4,8 @@ import android.graphics.Rect;
 import android.os.Handler;
 import android.util.Log;
 
+import comstucom.movip88.App;
+import comstucom.movip88.R;
 import comstucom.movip88.engine.Game;
 import comstucom.movip88.engine.GameObject;
 import comstucom.movip88.engine.Scene;
@@ -89,6 +91,7 @@ public class Bonk extends GameObject {
         };
 
         h.postDelayed(myRunnable, 10000);
+
     }
     public boolean isBoosterExtraSalto() { return boosterExtraSalto; }
 
@@ -117,7 +120,7 @@ public class Bonk extends GameObject {
         Runnable myRunnable = new Runnable() {
             @Override
             public void run() {
-                ScenePregunta scene = new ScenePregunta(game,"Quieres volver a jugar ?", "Si","No", score);
+                ScenePregunta scene = new ScenePregunta(game, App.getContext().getString(R.string.pregunta),  App.getContext().getString(R.string.afirmacion), App.getContext().getString(R.string.negacion), score);
                 game.loadScene(scene);
             }
         };

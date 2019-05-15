@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
+import comstucom.movip88.App;
 import comstucom.movip88.R;
 import comstucom.movip88.custom_view.CustomCuestion;
 import comstucom.movip88.game.GameActivity;
@@ -23,7 +24,7 @@ public class PlayActivity extends AppCompatActivity {
     @Override
     public void onResume() {
         super.onResume();
-        customCuestion.setPregunta("A que quieres jugar?");
+        customCuestion.setPregunta(App.getContext().getString(R.string.escogerJuego));
         customCuestion.setAceptar("Wormy");
         customCuestion.setRechazar("Bonk");
         customCuestion.setVisibility(View.VISIBLE);

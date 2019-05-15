@@ -3,6 +3,7 @@ package comstucom.movip88.engine;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 
+import comstucom.movip88.App;
 import comstucom.movip88.R;
 import comstucom.movip88.game.Scene01;
 import comstucom.movip88.game.ScenePregunta;
@@ -52,10 +53,8 @@ public class Game {
         return level;
     }
 
-    public void setLevel(Integer level) { this.level = level; }
-
     public int currentSceneResource(){
-        return scenesResources[this.level];
+        return scenesResources[level];
     }
 
     // Methods to be called by the game engine on start, stop, resume and pause
@@ -71,7 +70,7 @@ public class Game {
             Scene01 scene = new Scene01(this);
             loadScene(scene);
         }else{
-            ScenePregunta scene = new ScenePregunta(this,"Felicitats, quieres volver a jugar ?", "Si","No", bonk.getScore());
+            ScenePregunta scene = new ScenePregunta(this, App.getContext().getString(R.string.felixitats), App.getContext().getString(R.string.afirmacion),App.getContext().getString(R.string.negacion), bonk.getScore());
             loadScene(scene);
         }
 

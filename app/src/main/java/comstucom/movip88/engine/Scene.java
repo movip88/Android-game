@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 
 @SuppressWarnings({"unused", "SameParameterValue"})
-abstract public class Scene extends ArrayList<GameObject> {
+abstract public class   Scene extends ArrayList<GameObject> {
     // Attributes
     protected Game game;
     private HashMap<String, HashMap<String, OnContactListener>> contactListeners;   // Listeners

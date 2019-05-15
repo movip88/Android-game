@@ -9,6 +9,7 @@
 8:15                                    //  8 = BONK JUMPING
 9:29,30,31,32,33                        //  9 = ROTATING COIN
 10:16,17,16,17,16,17,18,19,18,19,18,19  // 10 = CRAB PINCERS' DANCE
-11:38                                   // 11 = BOX
+11:53                                   // 11 = DOOR
 12:39                                   // 12 = PLANT A
 13:52                                   // 13 = FALLING FRONT
+14:54,54,54,55,55,55                                // 14 = TELEPORT

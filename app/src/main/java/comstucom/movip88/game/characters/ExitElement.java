@@ -9,7 +9,7 @@ public class ExitElement extends GameObject {
     // Constructor
     public ExitElement(Game game, int x, int y) {
         super(game, x, y);
-        this.addTag("box");
+        this.addTag("door");
         this.addSpriteSequence(0, 11);
         SpriteSequence spriteSequence = getCurrentSpriteSequence();
         spriteSequence.randomizeSprite();
@@ -20,7 +20,7 @@ public class ExitElement extends GameObject {
 
     // The collision rect around the coin
     @Override public void updateCollisionRect() {
-        collisionRect.set(x, y, x + 15, y + 15);
+        collisionRect.set(x, y, x + 37, y + 40);
     }
 
 }

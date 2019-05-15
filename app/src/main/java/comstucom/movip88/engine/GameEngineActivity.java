@@ -11,9 +11,6 @@ import android.view.ViewTreeObserver;
 import android.view.Window;
 import android.view.WindowManager;
 
-import comstucom.movip88.HelperUser;
-import comstucom.movip88.model.Partida;
-
 // Basic Game Activity with Game Engine loading included by design
 public abstract class GameEngineActivity extends AppCompatActivity
         implements ViewTreeObserver.OnGlobalLayoutListener {
@@ -77,11 +74,6 @@ public abstract class GameEngineActivity extends AppCompatActivity
     }
     @Override public void onDestroy() {
         super.onDestroy();
-        Partida p = new Partida();
-        p.setLevel(gameEngine.getGame().getLevel());
-        p.setScore(gameEngine.getGame().getBonk().getScore());
-        p.setLives(gameEngine.getGame().getBonk().getLives());
-        HelperUser.getInstance(this).guardarPartida(p);
         gameEngine.stop();
     }
 

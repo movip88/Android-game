@@ -25,4 +25,12 @@
     <string name="score">score</string>
     <string name="playedAt">Played at</string>
     <string name="formatEmail">It has to be an email format</string>
+    <string name="pregunta">Do you want to play again?</string>
+    <string name="afirmacion">Yes</string>
+    <string name="reanudar">Do you want to continuoe the game?</string>
+    <string name="berserker">*Berserker Mode*</string>
+    <string name="iniciarJuego">"Do you want to start a game? "</string>
+    <string name="puntuacionPregunta">Your score is:</string>
+    <string name="escogerJuego">What game do you want to play?</string>
+    <string name="felixitats">¡¡¡Congratulations!!! Do you want to play again?</string>
 </resources>

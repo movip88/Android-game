@@ -15,6 +15,7 @@ import android.view.KeyEvent;
 
 import java.util.Locale;
 
+import comstucom.movip88.App;
 import comstucom.movip88.R;
 import comstucom.movip88.engine.Game;
 import comstucom.movip88.engine.GameEngine;
@@ -28,6 +29,7 @@ import comstucom.movip88.game.characters.Coin;
 import comstucom.movip88.game.characters.Crab;
 import comstucom.movip88.game.characters.ExitElement;
 import comstucom.movip88.game.characters.IntelligentCrab;
+import comstucom.movip88.game.characters.Teleport;
 
 // A fully playable tiled scene
 public class Scene01 extends TiledScene implements OnContactListener {
@@ -46,8 +48,8 @@ public class Scene01 extends TiledScene implements OnContactListener {
     public Scene01(Game game) {
         super(game);
         // Load the bitmap set for this game
-
         GameEngine gameEngine = game.getGameEngine();
+        if(gameEngine.getBitmapSet() == null) gameEngine.loadBitmapSet(R.raw.sprites, R.raw.sprites_info, R.raw.sprites_seq);
 
         heard = BitmapFactory.decodeResource(gameEngine.getResources(), R.drawable.heard);
 
@@ -67,8 +69,10 @@ public class Scene01 extends TiledScene implements OnContactListener {
         // Add contact listeners by tag names
         this.addContactListener("bonk", "enemy", this);
         this.addContactListener("bonk", "coin", this);
-        this.addContactListener("bonk", "box", this);
+        this.addContactListener("bonk", "door", this);
         this.addContactListener("bonk", "boosterJump", this);
+        this.addContactListener("bonk", "teleportEnter", this);
+
         // Prepare the painters for drawing
         paintKeyBackground = new Paint();
         paintKeyBackground.setColor(Color.argb(20, 0, 0, 0));
@@ -104,7 +108,7 @@ public class Scene01 extends TiledScene implements OnContactListener {
         }
 
         // Lines beginning with "BOX"
-        if (cmd.equals("BOX")) {
+        if (cmd.equals("DOOR")) {
             String[] parts2 = args.split(",");
             if (parts2.length != 2) return null;
             int coinX = Integer.parseInt(parts2[0].trim()) * 16;
@@ -119,6 +123,14 @@ public class Scene01 extends TiledScene implements OnContactListener {
             int coinX = Integer.parseInt(parts2[0].trim()) * 16;
             int coinY = Integer.parseInt(parts2[1].trim()) * 16;
             return new BoosterJump(game, coinX, coinY);
+        }
+        // Lines beginning with "TELEPORT"
+        if (cmd.equals("TELEPORT")) {
+            String[] parts2 = args.split(",");
+            if (parts2.length != 4) return null;
+            int coinX = Integer.parseInt(parts2[0].trim()) * 16;
+            int coinY = Integer.parseInt(parts2[1].trim()) * 16;
+            return new Teleport(game, coinX, coinY);
         }
 
         // Lines beginning with "CRAB"
@@ -225,7 +237,7 @@ public class Scene01 extends TiledScene implements OnContactListener {
             }
         }
         //contact exit element
-        else if(tag2.equals("box")){
+        else if(tag2.equals("door")){
             game.setBonk(bonk);
             game.pasNextLevel();
         }
@@ -268,7 +280,8 @@ public class Scene01 extends TiledScene implements OnContactListener {
 
         //booster active
         if(bonk.isBoosterExtraSalto()){
-            String texto = "¡Modo matanza!";
+
+            String texto = App.getContext().getString(R.string.berserker);
             canvas.drawText(texto, (getScaledWidth() / 2) - paintBooster.measureText(texto) / 2, 20, paintBooster);
         }
 

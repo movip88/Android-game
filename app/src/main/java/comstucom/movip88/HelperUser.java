@@ -18,7 +18,6 @@ import java.lang.reflect.Type;
 import comstucom.movip88.activity.RegisterActivity;
 import comstucom.movip88.activity.SettingsActivity;
 import comstucom.movip88.exception.ExceptionTokenNull;
-import comstucom.movip88.model.Partida;
 import comstucom.movip88.model.Player;
 
 import static android.content.Context.MODE_PRIVATE;
@@ -73,40 +72,6 @@ public class HelperUser {
         SharedPreferences pref = aplicationContext.getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
         SharedPreferences.Editor ed =  pref.edit();
         ed.putString("currentPlayer", gson.toJson(this.currentPlayer));
-        ed.apply();
-    }
-
-    /**
-     * Serializa la infromacion de una partida
-     * @param partida
-     */
-    public void guardarPartida(Partida partida){
-        Gson gson = new Gson();
-        SharedPreferences pref = aplicationContext.getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
-        SharedPreferences.Editor ed =  pref.edit();
-        ed.putString("partida", gson.toJson(partida));
-        ed.apply();
-    }
-
-    /**
-     * Devuelve la partida guardada
-     * @return Partida
-     */
-    public Partida cogerPartida(){
-        SharedPreferences pref = aplicationContext.getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
-        String partida = pref.getString("partida", "null");
-        if(partida.equals("null")){ return null; }
-        Gson gson = new Gson();
-        return gson.fromJson(partida,Partida.class);
-    }
-
-    /**
-     * Borra la key partida
-     */
-    public void eliminarPartidaGuardada(){
-        SharedPreferences pref = aplicationContext.getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
-        SharedPreferences.Editor ed =  pref.edit();
-        ed.remove("partida");
         ed.apply();
     }
 
