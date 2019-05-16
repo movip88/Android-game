@@ -49,7 +49,6 @@ public class Scene01 extends TiledScene implements OnContactListener {
         super(game);
         // Load the bitmap set for this game
         GameEngine gameEngine = game.getGameEngine();
-        if(gameEngine.getBitmapSet() == null) gameEngine.loadBitmapSet(R.raw.sprites, R.raw.sprites_info, R.raw.sprites_seq);
 
         heard = BitmapFactory.decodeResource(gameEngine.getResources(), R.drawable.heard);
 
@@ -71,7 +70,7 @@ public class Scene01 extends TiledScene implements OnContactListener {
         this.addContactListener("bonk", "coin", this);
         this.addContactListener("bonk", "door", this);
         this.addContactListener("bonk", "boosterJump", this);
-        this.addContactListener("bonk", "teleportEnter", this);
+        this.addContactListener("bonk", "teleport", this);
 
         // Prepare the painters for drawing
         paintKeyBackground = new Paint();
@@ -130,7 +129,11 @@ public class Scene01 extends TiledScene implements OnContactListener {
             if (parts2.length != 4) return null;
             int coinX = Integer.parseInt(parts2[0].trim()) * 16;
             int coinY = Integer.parseInt(parts2[1].trim()) * 16;
-            return new Teleport(game, coinX, coinY);
+
+            int newX = Integer.parseInt(parts2[2].trim()) * 16;
+            int newY = Integer.parseInt(parts2[3].trim()) * 16;
+
+            return new Teleport(game, coinX, coinY, newX, newY);
         }
 
         // Lines beginning with "CRAB"
@@ -247,6 +250,12 @@ public class Scene01 extends TiledScene implements OnContactListener {
             //TODO poner sonido
             bonk.aTocadoBoosterSalto();
             object2.removeFromScene();
+        }
+
+        //contact teleport element
+        else if(tag2.equals("teleport")){
+            //TODO poner sonido
+            bonk.reset(((Teleport)object2).getNewX(),((Teleport)object2).getNewY());
         }
     }
 
