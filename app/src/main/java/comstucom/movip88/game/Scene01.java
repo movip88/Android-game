@@ -62,7 +62,7 @@ public class Scene01 extends TiledScene implements OnContactListener {
         // The screen will hold 16 rows of tiles (16px height each)
         this.setScaledHeight(16 * 16);
         // Pre-loading of sound effects
-        game.getAudio().loadSoundFX(new int[]{ R.raw.coin, R.raw.die, R.raw.pause, R.raw.golpe } );
+        game.getAudio().loadSoundFX(new int[]{ R.raw.coin, R.raw.die, R.raw.pause, R.raw.golpe, R.raw.morder, R.raw.woosh, R.raw.teleport} );
         // Load the scene tiles from resource
         this.loadFromFile(game.currentSceneResource());
         // Add contact listeners by tag names
@@ -224,7 +224,7 @@ public class Scene01 extends TiledScene implements OnContactListener {
         // Contact between Bonk and an enemy
         else if (tag2.equals("enemy")) {
             if(bonk.getState() == Bonk.STATE_FALLING_BOOSTER){
-                //TODO poner sonido
+                this.getGame().getAudio().playSoundFX(4);
                 object2.removeFromScene();
                 bonk.addScore(100);
             }else{
@@ -247,14 +247,14 @@ public class Scene01 extends TiledScene implements OnContactListener {
 
         //contact jump booster element
         else if(tag2.equals("boosterJump")){
-            //TODO poner sonido
+            this.getGame().getAudio().playSoundFX(5);
             bonk.aTocadoBoosterSalto();
             object2.removeFromScene();
         }
 
         //contact teleport element
         else if(tag2.equals("teleport")){
-            //TODO poner sonido
+            this.getGame().getAudio().playSoundFX(6);
             bonk.reset(((Teleport)object2).getNewX(),((Teleport)object2).getNewY());
         }
     }
